@@ -591,7 +591,7 @@
              * @return {string} String representation as of "Tokenizer(index/length)"
              * @expose
              */
-            TokenizerPrototype.toString = function() {
+            TokenizerPrototype.toString2 = function() {
                 return "Tokenizer("+this.index+"/"+this.source.length+" at line "+this.line+")";
             };
 
@@ -1320,7 +1320,7 @@
              * Returns a string representation of this object.
              * @returns {string} String representation as of "Parser"
              */
-            ParserPrototype.toString = function() {
+            ParserPrototype.toString2 = function() {
                 return "Parser";
             };
 
@@ -1417,7 +1417,7 @@
              * @return String representation
              * @expose
              */
-            TPrototype.toString = function(includeClass) {
+            TPrototype.toString2 = function(includeClass) {
                 return (includeClass ? this.className + " " : "") + this.fqn();
             };
 
@@ -2302,7 +2302,7 @@
                      * @return {string} String representation as of ".Fully.Qualified.MessageName"
                      * @expose
                      */
-                    MessagePrototype.toString = function() {
+                    MessagePrototype.toString2 = function() {
                         return T.toString();
                     };
 
@@ -4267,7 +4267,7 @@
              * @return {string} String representation as of "Builder"
              * @expose
              */
-            BuilderPrototype.toString = function() {
+            BuilderPrototype.toString2 = function() {
                 return "Builder";
             };
 
@@ -4433,11 +4433,8 @@
         return ProtoBuf;
     }
 
-    /* CommonJS */ if (typeof require === 'function' && typeof module === 'object' && module && typeof exports === 'object' && exports)
-        module['exports'] = init(require("bytebuffer"));
-    /* AMD */ else if (typeof define === 'function' && define["amd"])
-        define(["ByteBuffer"], init);
-    /* Global */ else
-        (global["dcodeIO"] = global["dcodeIO"] || {})["ProtoBuf"] = init(global["dcodeIO"]["ByteBuffer"]);
-
+    Components.utils.import('resource://bytebuffer/ByteBufferAB.js', global);
+    global.ProtoBuf = init(global.ByteBuffer);
 })(this);
+
+this.EXPORTED_SYMBOLS = ["ProtoBuf"];

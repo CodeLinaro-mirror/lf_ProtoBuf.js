@@ -765,3 +765,6 @@ ByteBuffer.MAX_VARINT32_BYTES = 5;
  * @const
  */
 ByteBuffer.MAX_VARINT64_BYTES = 10;
+
+this.ByteBuffer = ByteBuffer;
+this.EXPORTED_SYMBOLS = ["ByteBuffer"];
